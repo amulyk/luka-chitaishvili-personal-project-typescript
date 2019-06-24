@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "es2015",
+    "experimentalDecorators": true,
+    "outDir": "build"
+  },
+  "include": [
+    "source/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

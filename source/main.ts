@@ -1,6 +1,7 @@
+import { Transaction } from './transaction/index'
+import { validations } from './transaction/validator'
 
-
-const scenario = [
+const scenario : Array<validations.Scenario> = [
   {
       index: 1,
       meta: {
@@ -8,8 +9,7 @@ const scenario = [
           description: 'This action is responsible for reading the most popular customers'
       },
       // callback for main execution
-      call: async (store) => {
-          store.component = 1;
+      call: async (store : object) => {
           throw new Error('Error from index 1')
           
       },
@@ -25,8 +25,8 @@ const scenario = [
           description: 'This action is responsible for reading the most popular customers'
       },
       // callback for main execution
-      call: async (store) => {
-          store.component = 2;            
+      call: async (store : object) => {
+                
       },
       // callback for rollback
       restore: async () => {console.log('Restore from index 2');
@@ -39,8 +39,7 @@ const scenario = [
           description: 'This action is responsible for reading the most popular customers'
       },
       // callback for main execution
-      call: async (store) => {
-          store.component = 1;
+      call: async (store : object) => {
           throw new Error('Error from index 3');
       }
       // callback for rollback

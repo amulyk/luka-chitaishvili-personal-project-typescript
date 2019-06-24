@@ -1,10 +1,14 @@
- 
+import { validations } from './validator'
 
  export class Transaction {
-     logs: [object];
-     store: object = {};
+     store: object;
+     logs: Array<validations.log>;
 
-    verifyItems(scenario : []) : void{
+    constructor() {
+        this.store = {};
+        this.logs = [];
+     }
+    verifyItems(scenario : Array <validations.Scenario>) {
         let lastItem = scenario[scenario.length - 1];
 
         if (lastItem.hasOwnProperty('restore')) {
@@ -18,11 +22,11 @@
         }
     }
 
-    async dispatch(scenario : []) {
-        this.verifyItems(scenario);
+    async dispatch(scenario : Array<validations.Scenario>) {
         scenario.sort((first, second) => {
             return first.index > second.index ? 1 : -1;
         });
+        this.verifyItems(scenario);
 
         let numSteps = 0;
         for (let step of scenario) {
@@ -31,19 +35,21 @@
                 silent = step.silent;
             }
             let storeBefore = {...this.store};
-            let log = {
+            let log : validations.log = {
                     index: step.index,
                     meta: { 
                         title: step.meta.title,
                         description: step.meta.description
-                    } 
+                    },
+                    storeBefore : {},
+                    storeAfter : {},
+                    error: null
                 };
 
             try {
                 await step.call(this.store);
                 log.storeBefore = storeBefore;
                 log.storeAfter = {...this.store};
-                log.error = null;
             } catch (err) {
                 log.error = { 
                         name: err.name,

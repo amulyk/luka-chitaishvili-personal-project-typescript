@@ -49,15 +49,13 @@ export class Transaction {
                     this.store = null;
 
                     for (let i = numSteps; i > 0; i--) {
-                        if (scenario[i - 1].hasOwnProperty("restore")) {
-                            try {
-                                const s = scenario[i - 1];
-                                if (s.restore) {
-                                    await s.restore();
-                                }
-                            } catch (err) {
-                                throw err;
+                        try {
+                            const s = scenario[i - 1];
+                            if (s.restore) {
+                                await s.restore();
                             }
+                        } catch (err) {
+                            throw err;
                         }
                     }
                     break;
@@ -71,10 +69,9 @@ export class Transaction {
     private verifyItems(scenario: Step[]) {
         const lastItem = scenario[scenario.length - 1];
 
-        if (lastItem.hasOwnProperty("restore")) {
+        if (lastItem.restore) {
             throw new Error("last step in scenario does not need restore function");
         }
-
         for (const step of scenario) {
             if (step.index < 0) {
                 throw new Error(`index: ${step.index} --- invalid step index in scenario`);

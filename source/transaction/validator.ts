@@ -8,7 +8,11 @@ export interface Step {
     restore?: () => void;
     silent?: boolean;
 }
-
+interface Error {
+    message: string;
+    name: string;
+    stack: string;
+}
 export interface Log {
     index: number;
     meta: {
@@ -17,5 +21,5 @@ export interface Log {
     };
     storeBefore: object;
     storeAfter: object;
-    error: object | null;
+    error: Error | null;
 }

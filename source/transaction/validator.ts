@@ -18,6 +18,6 @@ export namespace validations {
         },
         storeBefore: object,
         storeAfter: object,
-        error: object,
+        error: object | null,
     }    
 }

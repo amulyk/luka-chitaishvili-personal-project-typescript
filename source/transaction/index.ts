@@ -1,14 +1,14 @@
-import { validations } from './validator'
+import { validations } from "./validator";
 
  export class Transaction {
-     store: object;
-     logs: Array<validations.log>;
+    logs: validations.log[];
+    store: object;
 
     constructor() {
         this.store = {};
         this.logs = [];
      }
-    verifyItems(scenario : Array <validations.Scenario>) {
+    verifyItems(scenario : validations.Scenario[]) {
         let lastItem = scenario[scenario.length - 1];
 
         if (lastItem.hasOwnProperty('restore')) {
@@ -22,7 +22,7 @@ import { validations } from './validator'
         }
     }
 
-    async dispatch(scenario : Array<validations.Scenario>) {
+    async dispatch(scenario : validations.Scenario[]) {
         scenario.sort((first, second) => {
             return first.index > second.index ? 1 : -1;
         });

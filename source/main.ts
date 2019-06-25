@@ -1,46 +1,43 @@
-import { Transaction } from './transaction/index'
-import { validations } from './transaction/validator'
+import { Transaction } from "./transaction/index";
+import { validations } from "./transaction/validator";
 
-const scenario : Array<validations.Scenario> = [
+const scenario : validations.Scenario[] = [
   {
       index: 1,
       meta: {
-          title: 'Read popular customers',
-          description: 'This action is responsible for reading the most popular customers'
+          title: "Read popular customers",
+          description: "This action is responsible for reading the most popular customers"
       },
       // callback for main execution
       call: async (store : object) => {
-          throw new Error('Error from index 1')
-          
+          throw new Error("Error from index 1");
       },
       silent: true,
       // callback for rollback
-      restore: async () => { console.log('Restore from index 1');
+      restore: async () => { console.log("Restore from index 1");
       },
   },
   {
       index: 2,
       meta: {
-          title: 'Read popular customers',
-          description: 'This action is responsible for reading the most popular customers'
+          title: "Read popular customers",
+          description: "This action is responsible for reading the most popular customers"
       },
       // callback for main execution
-      call: async (store : object) => {
-                
-      },
+      call: async (store : object) => {},
       // callback for rollback
-      restore: async () => {console.log('Restore from index 2');
-      }
+      restore: async () => {console.log("Restore from index 2");
+        }
   },
   {
       index: 3,
       meta: {
-          title: 'Read popular customers',
-          description: 'This action is responsible for reading the most popular customers'
+          title: "Read popular customers",
+          description: "This action is responsible for reading the most popular customers"
       },
       // callback for main execution
       call: async (store : object) => {
-          throw new Error('Error from index 3');
+          throw new Error("Error from index 3");
       }
       // callback for rollback
   }

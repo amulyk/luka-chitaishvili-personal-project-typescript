@@ -6,7 +6,8 @@
     "jsRules": {},
     "rules": {
         "no-console": [false],
-        "no-any": [true, {"ignore-rest-args": true}]
+        "no-any": [true, {"ignore-rest-args": true}],
+        "interface-name": false
     },
     "rulesDirectory": []
 }

@@ -1,5 +1,5 @@
 export namespace validations {
-    export interface Scenario {
+    export interface Step {
         index: number;
         meta: { 
             title: string;
@@ -10,7 +10,7 @@ export namespace validations {
         silent?: boolean;
     }
     
-    export interface log {
+    export interface Log {
         index: number;
         meta: {
             title: string;

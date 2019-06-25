@@ -1,7 +1,7 @@
 import { Transaction } from "./transaction/index";
 import { validations } from "./transaction/validator";
 
-const scenario : validations.Scenario[] = [
+const scenario : validations.Step[] = [
   {
       index: 1,
       meta: {

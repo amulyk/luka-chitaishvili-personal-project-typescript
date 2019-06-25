@@ -1,14 +1,14 @@
 import { validations } from "./validator";
 
  export class Transaction {
-    logs: validations.log[];
+    logs: validations.Log[];
     store: object;
 
     constructor() {
-        this.store = {};
+        this.store= {};
         this.logs = [];
      }
-    verifyItems(scenario : validations.Scenario[]) {
+    verifyItems(scenario : validations.Step[]) {
         let lastItem = scenario[scenario.length - 1];
 
         if (lastItem.hasOwnProperty('restore')) {
@@ -22,7 +22,7 @@ import { validations } from "./validator";
         }
     }
 
-    async dispatch(scenario : validations.Scenario[]) {
+    async dispatch(scenario : validations.Step[]) {
         scenario.sort((first, second) => {
             return first.index > second.index ? 1 : -1;
         });
@@ -35,7 +35,7 @@ import { validations } from "./validator";
                 silent = step.silent;
             }
             let storeBefore = {...this.store};
-            let log : validations.log = {
+            let log : validations.Log = {
                     index: step.index,
                     meta: { 
                         title: step.meta.title,
